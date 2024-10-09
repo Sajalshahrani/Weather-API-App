@@ -1,0 +1,39 @@
+<div class="row d-flex justify-content-center py-5" *ngIf="!hasError; else errorTemplate">
+  <div class="col-lg-6 col-xl-5">
+    <div class="card text-body" style="border-radius: 35px;">
+      <div class="card-body p-4">
+        <div class="d-flex">
+          <h6 class="flex-grow-1">{{ weatherData?.name }}, {{ weatherData?.sys?.country }}</h6>
+         <div class="col text-end"> <div class="row">
+          <h6>{{ weatherData?.dt | date: 'shortTime' }}</h6>
+        </div>
+        <div class="row">
+          <h6>{{ weatherData?.dt * 1000 | date: 'dd/MM/yyyy' }}</h6>
+        </div></div>
+         
+        </div>
+        <div class="d-flex flex-column text-center">
+          <h6 class="display-4 mb-0 font-weight-bold">{{ weatherData?.main.temp }}°C</h6>
+          <span class="small" style="color: #868B94">{{ weatherData?.weather[0].description }}</span>
+        </div>
+        <div class="d-flex align-items-center">
+          <div class="flex-grow-1" style="font-size: 1rem;">
+            <div><i class="fas fa-wind fa-fw" style="color: #868B94;"></i> <span class="ms-1">{{ weatherData?.wind.speed }} km/h</span></div>
+            <div><i class="fas fa-tint fa-fw" style="color: #868B94;"></i> <span class="ms-1">{{ weatherData?.main.humidity }}%</span></div>
+            <div><i class="fas fa-sun fa-fw" style="color: #868B94;"></i> <span class="ms-1">{{ weatherData?.clouds.all }}%</span></div>
+          </div>
+          <div>
+            <img [src]="getWeatherIconUrl(weatherData?.weather[0].icon)" width="100px">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Error template -->
+<ng-template #errorTemplate>
+  <div class="alert alert-danger text-center" role="alert">
+    <strong>Error:</strong> Unable to fetch weather data. Please try a different city.
+  </div>
+</ng-template>
