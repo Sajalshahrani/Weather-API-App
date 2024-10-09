@@ -8,13 +8,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private titleService: Title) {
-    this.setTitle('Weather-App');  
-  }
 
-  setTitle(newTitle: string) {
-    this.titleService.setTitle(newTitle);
-  }
 }
 
 
